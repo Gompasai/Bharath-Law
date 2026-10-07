@@ -7,7 +7,7 @@ services:
     region: oregon
     envVars:
       - key: PORT
-        value: 4310
+        value: 10000
       - key: HOST
         value: 0.0.0.0
       - key: NODE_ENV
