@@ -441,28 +441,99 @@ h3 {
   transform: rotate(-3deg);
 }
 .mascot {
-  width: 180px;
-  height: 180px;
   overflow: visible;
   flex-shrink: 0;
 }
-.mascot.small {
-  width: 54px;
-  height: 54px;
+.lawyer-avatar-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  border-style: solid !important;
+  border-width: 2px !important;
+  box-shadow: 0 3px 10px rgba(15, 33, 61, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  line-height: 1;
 }
-.mascot.working .dot-body {
-  animation: bob 2s ease-in-out infinite;
+
+/* Small badge (Sidebar AGENTS list, Top bar) */
+.lawyer-avatar-badge.small {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  font-size: 15px !important;
+  border-width: 1.5px !important;
 }
-.mascot.complete .dot-body {
-  transform: rotate(-3deg);
-  transform-origin: center;
+
+/* Normal badge (Chat header persona) */
+.lawyer-avatar-badge:not(.small) {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  font-size: 27px !important;
+  border-width: 2px !important;
 }
+
+/* Empty chat / welcome large persona */
+.empty-chat-persona .lawyer-avatar-badge,
+.new-conversation .lawyer-avatar-badge {
+  width: 68px !important;
+  height: 68px !important;
+  min-width: 68px !important;
+  min-height: 68px !important;
+  font-size: 36px !important;
+  border-width: 2.5px !important;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Unlock screen */
+.unlock .lawyer-avatar-badge {
+  width: 80px !important;
+  height: 80px !important;
+  min-width: 80px !important;
+  min-height: 80px !important;
+  font-size: 42px !important;
+  border-width: 3px !important;
+  margin-bottom: 8px;
+}
+
+/* Emoji centering */
+.lawyer-avatar-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+  transform: translateY(-0.5px);
+}
+
+/* Thinking / Working pulse */
+.lawyer-avatar-badge.working {
+  animation: lawyerPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes lawyerPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
 .mascot.paused {
   filter: saturate(0.5);
-}
-.mascot.needs-input .dot-body {
-  transform: rotate(6deg);
-  transform-origin: center;
+  opacity: 0.75;
 }
 .composer {
   background: white;
