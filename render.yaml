@@ -24,7 +24,3 @@ services:
         generateValue: true
       - key: INTELLIGENCE_API_KEY
         value: local
-    disk:
-      name: data
-      mountPath: /data
-      sizeGB: 1
