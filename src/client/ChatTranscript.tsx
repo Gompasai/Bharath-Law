@@ -3,6 +3,7 @@ import { Fragment, useState, type ReactNode } from 'react';
 import { PhoneOff, Scale, Copy, Check, FileText } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import type { AssistantMessage, Message } from '@ag-ui/core';
 import type { CallReceipt } from '../shared/types';
 import { voiceReceiptMessagePrefix } from '../shared/voice-receipt';
@@ -72,6 +73,7 @@ function AssistantBubble({ content }: { content: string }) {
       <div className="counsel-card-body">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
             table: ({ children }) => (
               <div className="legal-table-container">
@@ -158,6 +160,7 @@ function UserBubble({ content }: { content: string }) {
       <div className="user-bubble-content">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
             table: ({ children }) => (
               <div className="legal-table-container">
