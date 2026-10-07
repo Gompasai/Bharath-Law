@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: bharath-law
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 4310
+      - key: HOST
+        value: 0.0.0.0
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_PATH
+        value: /data/opendots.sqlite
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: OPENAI_MODEL
+        value: openai/gpt-oss-120b
+      - key: OWNER_TOKEN
+        generateValue: true
+      - key: INTELLIGENCE_API_KEY
+        value: local
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
