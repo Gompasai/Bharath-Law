@@ -42,18 +42,41 @@ export function createApp({
     c.header('Cache-Control', 'no-store');
     c.header('X-Content-Type-Options', 'nosniff');
     const requestUrl = new URL(c.req.url);
+    const forwardedProto = c.req.header('x-forwarded-proto') ?? requestUrl.protocol.replace(':', '');
+    const forwardedHost = c.req.header('x-forwarded-host') ?? c.req.header('host') ?? requestUrl.host;
+    const proxyOrigin = `${forwardedProto}://${forwardedHost}`;
+
     const allowedHosts = new Set([
       'localhost',
       '127.0.0.1',
       '[::1]',
+      requestUrl.hostname,
+      ...(forwardedHost ? [forwardedHost.split(':')[0]] : []),
       ...(origin ? [new URL(origin).hostname] : []),
     ]);
-    if (!ownerToken && !allowedHosts.has(requestUrl.hostname))
+    const hostHeader = (forwardedHost ? forwardedHost.split(':')[0] : requestUrl.hostname);
+    if (!ownerToken && !allowedHosts.has(requestUrl.hostname) && !allowedHosts.has(hostHeader))
       return c.json({ error: 'Unrecognized host.' }, 403);
     const requestOrigin = c.req.header('origin');
-    const expectedOrigin = origin ?? new URL(c.req.url).origin;
-    if (requestOrigin && requestOrigin !== expectedOrigin)
-      return c.json({ error: 'Cross-origin requests are not allowed.' }, 403);
+    const expectedOrigin = origin ?? proxyOrigin;
+    if (requestOrigin) {
+      let isAllowed =
+        requestOrigin === expectedOrigin ||
+        requestOrigin === proxyOrigin ||
+        requestOrigin === new URL(c.req.url).origin;
+      if (!isAllowed) {
+        try {
+          const reqHostname = new URL(requestOrigin).hostname;
+          if (allowedHosts.has(reqHostname)) {
+            isAllowed = true;
+          }
+        } catch {
+          // ignore invalid url
+        }
+      }
+      if (!isAllowed)
+        return c.json({ error: 'Cross-origin requests are not allowed.' }, 403);
+    }
     if (c.req.header('sec-fetch-site') === 'cross-site')
       return c.json({ error: 'Cross-site requests are not allowed.' }, 403);
     if (ownerToken) {
