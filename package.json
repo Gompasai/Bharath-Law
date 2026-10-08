@@ -1,7 +1,7 @@
 {
-  "name": "opendots",
-  "version": "0.1.0",
-  "description": "A self-hosted personal-agent template with CopilotKit Intelligence, Threads, and Channels.",
+  "name": "bharath-law",
+  "version": "1.0.0",
+  "description": "Bharath Law Chambers — Autonomous Indian Legal AI Intelligence Platform for Litigation, Drafting, and Case Strategy.",
   "main": "index.js",
   "directories": {
     "doc": "docs",
@@ -19,9 +19,9 @@
     "format": "prettier --write src tests *.json *.ts *.js index.html public .github Dockerfile \"compose*.yml\" deployment README.md docs .env.example --ignore-unknown",
     "check-format": "prettier --check src tests *.json *.ts *.js index.html public .github Dockerfile \"compose*.yml\" deployment README.md docs .env.example --ignore-unknown"
   },
-  "keywords": [],
-  "author": "Atai Barkai",
-  "license": "MIT",
+  "keywords": ["indian-law", "legal-ai", "bharath-law", "bns", "bnss", "bsa", "cpc", "supreme-court"],
+  "author": "Bharath Law Chambers",
+  "license": "Proprietary",
   "type": "module",
   "dependencies": {
     "@ag-ui/client": "^0.0.59",

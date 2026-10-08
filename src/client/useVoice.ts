@@ -282,7 +282,7 @@ export function useVoice(
       // Mark call as active on backend
       await api(`/voice/calls/${response.id}/active`, 'POST', {}).catch(() => {});
 
-      // Midearth In-House Voice Engine
+      // Bharath Law In-House Voice Engine
       const current: VoiceSession = {
         mode: 'local',
         id: response.id,

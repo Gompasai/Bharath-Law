@@ -4,7 +4,7 @@ import { ComputerService } from './computer-service.js';
 import { computerTools } from './computer-tools.js';
 import { pageAccess, pageTools } from './page-tools.js';
 import { legalTools } from './legal-tools.js';
-import { midearthTools } from './midearth-tools.js';
+import { bharathLawTools } from './bharath-law-tools.js';
 import { AbstractAgent } from '@ag-ui/client';
 import { type BaseEvent, type RunAgentInput, EventType } from '@ag-ui/core';
 import {
@@ -266,7 +266,7 @@ export class DotAgent extends AbstractAgent {
           ...tools,
           ...legalTools(this.workspace, this.store, dot.id, pages),
           ...pageTools(pages),
-          ...midearthTools(this.workspace, this.store, dot.id),
+          ...bharathLawTools(this.workspace, this.store, dot.id),
           ...(computer.configured
             ? computerTools(computer, dot.id, check, controller.signal)
             : []),

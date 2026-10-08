@@ -26,7 +26,7 @@ export function agentGateway(
     await next();
   });
 
-  // 1. List available Midearth Labs Agents
+  // 1. List available Bharath Law Chambers Agents
   app.get('/agents', (c) => {
     const dots = workspace.dots().map((d) => ({
       id: d.id,

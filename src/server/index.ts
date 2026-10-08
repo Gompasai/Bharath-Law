@@ -70,7 +70,7 @@ const config: PlatformConfig = {
   computerToken: process.env.COMPUTER_TOKEN,
   computerNamespace: process.env.COMPUTER_NAMESPACE,
   voiceKey: process.env.VOICE_API_KEY || 'local',
-  voiceModel: process.env.VOICE_MODEL || 'midearth-voice',
+  voiceModel: process.env.VOICE_MODEL || 'bharath-law-voice',
   voiceName: process.env.VOICE_NAME ?? 'marin',
   slackChannel: process.env.SLACK_CHANNEL_NAME,
   slackTeam: process.env.SLACK_TEAM_ID,

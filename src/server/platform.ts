@@ -88,7 +88,7 @@ export class Platform {
           intelligence: this.intelligence,
           identifyUser: async () => ({
             id: workspace.ownerId,
-            name: 'Midearth Labs owner',
+            name: 'Bharath Law Chambers Owner',
           }),
           agents,
           channels,
